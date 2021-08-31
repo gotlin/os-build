@@ -14,7 +14,7 @@ dailybuild_flag=$DAILYBUILD_PATH/dailybuild.tmp
 
 if [ -f $dailybuild_flag ]; then
     DATE=$(grep "buildtime" $dailybuild_flag | awk -F"=" '{print $2}')
-    TARGET=${SCRIPT_PATH}/$DATE
+    TARGET=${DAILYBUILD_PATH}/$DATE
 else
     exit 1
 fi
