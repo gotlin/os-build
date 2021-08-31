@@ -9,3 +9,4 @@ if [ ! -d $DAILYBUILD_PATH/"$buildtime" ]; then
     mkdir -p $DAILYBUILD_PATH/"$buildtime"
 fi
 	cp -f ./dailybuild.tmp $DAILYBUILD_PATH
+
