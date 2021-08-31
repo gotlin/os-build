@@ -20,7 +20,13 @@ else
 fi
 
 ## make sure in docker container, loop0 can be used by lorax
-seq 0 9 | xargs -I {} mknod /dev/loop{} b 7 {}
+for i in $(seq 0 9); do
+    if mknod /dev/loop"$i" b 7 "$i"; then
+        echo "mknod /dev/loop$i successful."
+    else
+        echo "mknod /dev/loop$i failed."
+    fi
+done
 
 dnf -y install oemaker && dnf clean all
 bash oemaker -t ${TYPE} -p ${PRODUCT} -v ${VERSION} -r "" "${REPO_URL}"
