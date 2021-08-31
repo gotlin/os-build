@@ -6,5 +6,10 @@ pipeline {
                 sh 'bash create_dailybuild_conf.sh'
             }
         }
+        stage('create_iso') {
+            steps {
+                sh 'bash create_iso.sh'
+            }
+        }
     }
 }
