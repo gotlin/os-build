@@ -37,7 +37,7 @@ cmd="dnf -y install oemaker && dnf clean all"
 echo "running: $cmd"
 eval "$cmd"
 
-cmd="bash oemaker -t ${TYPE} -p ${PRODUCT} -v ${VERSION} -r '' -s ${REPO_URL}"
+cmd="bash oemaker -t ${TYPE} -p ${PRODUCT} -v ${VERSION} -r '' -s \"${REPO_URL}\""
 echo "running: $cmd"
 eval "$cmd"
 
