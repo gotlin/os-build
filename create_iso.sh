@@ -4,6 +4,7 @@ set -e
 TYPE='standard'
 PRODUCT="TowerOS"
 VERSION="21.09"
+ARCH=$(arch)
 DAILYBUILD_PATH=/srv/dailybuild/TowerOS-21.09
 
 if [ -z "$REPO_URL" ]; then
@@ -17,9 +18,10 @@ REPO_URL=$(echo "$REPO_URL" | xargs echo)
 
 dailybuild_flag=$DAILYBUILD_PATH/dailybuild.tmp
 
+
 if [ -f $dailybuild_flag ]; then
     DATE=$(grep "buildtime" $dailybuild_flag | awk -F"=" '{print $2}')
-    TARGET=${DAILYBUILD_PATH}/$DATE
+    TARGET=${DAILYBUILD_PATH}/$DATE/ISO/${ARCH}
 else
     exit 1
 fi
@@ -41,4 +43,12 @@ cmd="bash oemaker -t ${TYPE} -p ${PRODUCT} -v ${VERSION} -r '' -s \"${REPO_URL}\
 echo "running: $cmd"
 eval "$cmd"
 
-cp /result/*.iso "$TARGET"/
+pushd /result
+for file in *.iso ;
+do
+sha256sum "${file}" > "${file}.sha256sum"
+done
+popd
+
+mkdir -p "$TARGET"
+install -v /result/*.iso* "$TARGET"
