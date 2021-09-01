@@ -41,4 +41,4 @@ cmd="bash oemaker -t ${TYPE} -p ${PRODUCT} -v ${VERSION} -r '' -s \"${REPO_URL}\
 echo "running: $cmd"
 eval "$cmd"
 
-cp /results/*.iso "$TARGET"/
+cp /result/*.iso "$TARGET"/
