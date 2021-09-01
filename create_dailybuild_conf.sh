@@ -6,7 +6,9 @@ echo "[default]" >dailybuild.tmp
 echo "buildtime=$buildtime" >>dailybuild.tmp
 
 if [ ! -d $DAILYBUILD_PATH/"$buildtime" ]; then
-    mkdir -p $DAILYBUILD_PATH/"$buildtime"
+    cmd="mkdir -p $DAILYBUILD_PATH/$buildtime"
+    echo "running: $cmd"
+    eval "$cmd"
 fi
 	cp -f ./dailybuild.tmp $DAILYBUILD_PATH
 
