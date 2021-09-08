@@ -1,5 +1,10 @@
 pipeline {
-    agent { label 'dailybuild' }
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+        }
+    }
+
     stages {
         stage('create_dailybuild_dir') {
             steps {
