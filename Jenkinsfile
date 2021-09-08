@@ -1,11 +1,14 @@
 pipeline {
     agent {
-        dockerfile {
-            filename 'Dockerfile'
-        }
+        label 'docker-daemon'
     }
 
     stages {
+        agent {
+            dockerfile {
+                filename 'Dockerfile'
+            }
+        }
         stage('create_dailybuild_dir') {
             steps {
                 sh 'bash create_dailybuild_conf.sh'
